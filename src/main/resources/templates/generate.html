@@ -8,14 +8,15 @@
 <h1>Lorem Generator</h1>
 <div>Insert parameters:</div>
 
-<form action="/result" method="get">
-    <input name="n" placeholder="Number">
+<form action="#" th:action="@{/}" th:object="${loremGenerator}" method="post">
+    <input name="number" placeholder="Number">
     <select name="type">
         <option name="word">word</option>
         <option name="sentence">sentence</option>
         <option name="paragraph">paragraph</option>
     </select>
-    <input type="submit" value="GENERATE">
+    <input type="submit" value="GENERATE"><br>
+    <span th:if="${#fields.hasErrors('number')}" th:errors="*{number}"></span><br/>
 </form>
 </body>
 </html>
