@@ -18,7 +18,7 @@ public class LoremGenerator {
      */
     private final int MAX_NUMBER = 10;
 
-    @Pattern(regexp = "[0-9]+", message = "Input must be an integer")
+    @Pattern(regexp = "[0-9]+", message = "Input must be a positive integer")
     private String number;
     private String type;
 
@@ -59,8 +59,8 @@ public class LoremGenerator {
     }
 
     public String generateText() {
-        // conversion into int
-        // we now that it is of the format [0-9]+
+        // conversion to int
+        // we know that it is of the format [0-9]+
         int n = Integer.parseInt(number);
         String text = "";
         switch (type) {
