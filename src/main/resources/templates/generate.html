@@ -11,9 +11,9 @@
 <form action="#" th:action="@{/}" th:object="${loremGenerator}" method="post">
     <input name="number" placeholder="Number">
     <select name="type">
-        <option name="word">word</option>
-        <option name="sentence">sentence</option>
-        <option name="paragraph">paragraph</option>
+        <option name="words">word</option>
+        <option name="sentences">sentence</option>
+        <option name="paragraphs">paragraph</option>
     </select>
     <input type="submit" value="GENERATE"><br>
     <span th:if="${#fields.hasErrors('number')}" th:errors="*{number}"></span><br/>
