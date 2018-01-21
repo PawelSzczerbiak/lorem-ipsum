@@ -65,9 +65,10 @@ public class LoremGenerator {
         String text = "";
         switch (type) {
             case "paragraph":
+                // NOTE: text must be wrapped by <p></p>
                 text = Stream.generate(() -> getTemplate())
                         .limit(n <= MAX_NUMBER ? n : MAX_NUMBER)
-                        .collect(joining("\n")); // TODO: doesnt work
+                        .collect(joining("</p><p>"));
                 break;
             case "sentence":
                 String sentences[] = getTemplate().split("\\.");
