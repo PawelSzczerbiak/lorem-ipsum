@@ -27,7 +27,7 @@ public class LoremController {
             return "generate";
         }
         redirectAttributes.addFlashAttribute("text", loremGenerator.generateText());
-        return "redirect:/result"; // maping onto /result
+        return "redirect:/result"; // mapping onto /result
     }
 
     // show

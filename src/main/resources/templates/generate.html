@@ -2,18 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Lorem generator</title>
+    <title>Lorem Ipsum Generator</title>
 </head>
 <body>
-<h1>Lorem Generator</h1>
+<h1>Lorem Ipsum Generator</h1>
 <div>Insert number:</div>
 
 <form action="#" th:action="@{/}" th:object="${loremGenerator}" method="post">
-    <input name="number" placeholder="Number">
-    <select name="type">
-        <option name="words">word</option>
-        <option name="sentences">sentence</option>
-        <option name="paragraphs">paragraph</option>
+    <input th:field="*{number}" placeholder="Number">
+    <select th:field="*{type}">
+        <option th:each="el : ${T(pl.szczerbiak.springLorem.model.Type).values()}"
+                th:value="${el}"
+                th:text="${el.name}">
+        </option>
     </select>
     <input type="submit" value="GENERATE"><br>
     <span th:if="${#fields.hasErrors('number')}" th:errors="*{number}"></span><br/>

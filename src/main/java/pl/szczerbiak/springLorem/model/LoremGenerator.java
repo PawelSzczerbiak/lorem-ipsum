@@ -1,11 +1,7 @@
 package pl.szczerbiak.springLorem.model;
 
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.joining;
@@ -14,13 +10,13 @@ public class LoremGenerator {
 
     /**
      * Maximum number of paragraph to be generated
-     * Number of words and sentences is restriced by the size of the template
+     * Number of words and sentences is restricted by the size of the template
      */
     private final int MAX_NUMBER = 10;
 
     @Pattern(regexp = "[0-9]+", message = "Input must be a positive integer")
     private String number;
-    private String type;
+    private Type type;
 
     public String getNumber() {
         return number;
@@ -30,11 +26,11 @@ public class LoremGenerator {
         this.number = number;
     }
 
-    public String getType() {
+    public Type getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(Type type) {
         this.type = type;
     }
 
@@ -64,18 +60,18 @@ public class LoremGenerator {
         int n = Integer.parseInt(number);
         String text = "";
         switch (type) {
-            case "paragraph":
+            case PARAGRAPH:
                 // NOTE: text must be wrapped by <p></p>
                 text = Stream.generate(() -> getTemplate())
                         .limit(n <= MAX_NUMBER ? n : MAX_NUMBER)
                         .collect(joining("</p><p>"));
                 break;
-            case "sentence":
+            case SENTENCE:
                 String sentences[] = getTemplate().split("\\.");
                 text = Arrays.stream(sentences).limit(n)
                         .collect(joining(".","","."));
                 break;
-            case "word":
+            case WORD:
                 String words[] = getTemplate().split("\\s");
                 text = Arrays.stream(words).limit(n)
                         .map(i -> i.replace(",", "").replace(".", ""))
