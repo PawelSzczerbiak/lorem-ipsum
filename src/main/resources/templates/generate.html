@@ -1,23 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Lorem Ipsum Generator</title>
+    <!-- Bootstrap core CSS -->
+    <link href="bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="generator .css" rel="stylesheet">
 </head>
-<body>
-<h1>Lorem Ipsum Generator</h1>
-<div>Insert number:</div>
-
-<form action="#" th:action="@{/}" th:object="${loremGenerator}" method="post">
-    <input th:field="*{number}" placeholder="Number">
-    <select th:field="*{type}">
+<body class="text-center">
+<form class="form-generator " action="#" th:action="@{/}" th:object="${loremGenerator}" method="post">
+    <h1 class="h3 mb-3 font-weight-normal">Lorem Ipsum Generator</h1>
+    <input type="text" th:field="*{number}" class="form-control" placeholder="Insert number" required autofocus>
+    <span class="warning" th:if="${#fields.hasErrors('number')}" th:errors="*{number}"></span>
+    <select class="custom-select d-block w-100" th:field="*{type}">
         <option th:each="el : ${T(pl.szczerbiak.springLorem.model.Type).values()}"
                 th:value="${el}"
                 th:text="${el.name}">
         </option>
     </select>
-    <input type="submit" value="GENERATE"><br>
-    <span th:if="${#fields.hasErrors('number')}" th:errors="*{number}"></span><br/>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Generate</button>
+    <p class="mt-5 mb-3 text-muted">See code on <a href="https://github.com/PawelSzczerbiak/lorem-ipsum-generator">GitHub</a></p>
 </form>
+
 </body>
 </html>
