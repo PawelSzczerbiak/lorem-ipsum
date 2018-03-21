@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -10,9 +10,9 @@
     <link href="generator.css" rel="stylesheet">
 </head>
 <body class="text-center">
-<form class="form-generator " action="#" th:action="@{/}" th:object="${loremGenerator}" method="post">
+<form class="form-generator" action="#" th:action="@{/}" th:object="${loremGenerator}" method="post">
     <h1 class="h3 mb-3 font-weight-normal">Lorem Ipsum Generator</h1>
-    <input type="text" th:field="*{number}" class="form-control" placeholder="Insert number" required autofocus>
+    <input type="number" th:field="*{number}" class="form-control" placeholder="Insert number" required autofocus>
     <span class="warning" th:if="${#fields.hasErrors('number')}" th:errors="*{number}"></span>
     <select class="custom-select d-block w-100" th:field="*{type}">
         <option th:each="el : ${T(pl.szczerbiak.springLorem.model.Type).values()}"

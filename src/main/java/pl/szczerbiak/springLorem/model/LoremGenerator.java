@@ -1,5 +1,6 @@
 package pl.szczerbiak.springLorem.model;
 
+import javax.validation.constraints.Max;
 import javax.validation.constraints.Pattern;
 import java.util.Arrays;
 import java.util.stream.Stream;
@@ -8,6 +9,7 @@ import static java.util.stream.Collectors.joining;
 
 public class LoremGenerator {
 
+    @Max(value = 950, message = "Maximum number: 950")
     @Pattern(regexp = "[0-9]+", message = "Input must be a positive integer")
     private String number;
     private Type type;
